@@ -1,0 +1,60 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" [formGroup]="customerForm">
+  <div fxLayout="column">
+    <mat-form-field  fxFlex>
+      <input matInput placeholder="First Name" formControlName="first_name">
+      <mat-error *ngIf="first_name.invalid && first_name.errors.required">
+        First Name is required.
+      </mat-error>
+      <mat-error *ngIf="first_name.invalid && first_name.errors.pattern">
+        Please enter valid name.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field  fxFlex>
+      <input matInput placeholder="Last Name" formControlName="last_name">
+      <mat-error *ngIf="last_name.invalid && last_name.errors.required">
+        Last Name is required.
+      </mat-error>
+      <mat-error *ngIf="last_name.invalid && last_name.errors.pattern">
+        Please enter valid name.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+      <textarea matInput placeholder="Address" formControlName="address"></textarea>
+      <mat-error *ngIf="address.invalid && address.errors.pattern">
+        Please enter valid address.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <input type="number" matInput placeholder="Aadhaar No" formControlName="aadhaar_no">
+      <mat-error *ngIf="aadhaar_no.invalid && aadhaar_no.errors.required">
+        Aadhaar No is required.
+      </mat-error>
+      <mat-error *ngIf="aadhaar_no.invalid && aadhaar_no.errors.pattern">
+        Please enter valid Aadhaar No.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+      <input type="number" matInput placeholder="Mobile Number" formControlName="mobile">
+      <mat-error *ngIf="mobile.invalid && mobile.errors.required">
+        Mobile Number is required.
+      </mat-error>
+      <mat-error *ngIf="mobile.invalid && mobile.errors.pattern">
+        Please enter valid Mobile Number.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- <div class="file-upload-div" fxFlex fxLayoutAlign="start">
+      <input type="file" class="hide" id="input-file-id" (change)="onFileChange($event)">
+      <label for="input-file-id" class="mat-flat-button file-upload">Upload Photo</label>
+      {{avatar ? avatar.name : '' }}
+    </div> -->
+
+    <div fxFlex fxFlexAlign="end">
+      <button mat-flat-button type="submit" class="marignRight" color="primary" [disabled]="customerForm.invalid">Submit</button>
+      <button mat-flat-button type="button" color="warn" (click)="onClear(f)">Clear</button>
+    </div>
+  </div>
+</form>

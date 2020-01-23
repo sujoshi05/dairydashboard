@@ -1,0 +1,32 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" [formGroup]="animalForm">
+  <div fxLayout="column">
+    <mat-form-field fxFlex>
+      <input matInput placeholder="Animal Name" formControlName="animal">
+      <mat-error *ngIf="animal.invalid && animal.errors.required">
+        Please select an Animal
+      </mat-error>
+      <mat-error *ngIf="animal.invalid && animal.errors.pattern">
+        Please enter valid animal
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+      <input type="number" matInput placeholder="Rate/Litre" formControlName="rate">
+      <mat-error *ngIf="rate.invalid && rate.errors.required">
+        Rate is required.
+      </mat-error>
+      <mat-error *ngIf="rate.invalid && (rate.errors.pattern || rate.errors.min)">
+        Please enter valid rate upto 2 digits(Ex. 50.89).
+      </mat-error>
+      <mat-error *ngIf="rate.invalid && rate.errors.max">
+        Please enter valid rate upto 500.
+      </mat-error>
+    </mat-form-field>
+
+    <div fxFlex fxFlexAlign="end">
+      <button mat-flat-button type="submit" class="marignRight" *ngIf="id" color="primary" [disabled]="animalForm.invalid">Update</button>
+      <button mat-flat-button type="submit" class="marignRight" *ngIf="!id" color="primary" [disabled]="animalForm.invalid">Add</button>
+      <button mat-flat-button type="button" (click)="redirect()" color="warn">Cancel</button>
+    </div>
+  </div>
+</form>

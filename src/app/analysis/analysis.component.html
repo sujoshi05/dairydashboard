@@ -1,0 +1,35 @@
+<div fxLayout="column">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" [formGroup]="graphForm" fxFlex>
+        <div fxLayout="column">
+            <mat-form-field fxFlex>
+                <mat-label>Select year</mat-label>
+                <mat-select formControlName="year">
+                    <mat-option *ngFor="let y of years" [value]="y">
+                        {{y}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="year.invalid && year.errors.required">
+                    Please select an year
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex>
+                <mat-label>Select</mat-label>
+                <mat-select formControlName="graphOption">
+                    <mat-option *ngFor="let g of graphOptions" [value]="g.value">
+                        {{g.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="graphOption.invalid && graphOption.errors.required">
+                    Please select an option
+                </mat-error>
+            </mat-form-field>
+            <div fxFlex>
+                <button mat-flat-button type="submit" class="marignRight" color="primary" [disabled]="graphForm.invalid">Submit</button>
+                <button mat-flat-button type="button" color="warn" (click)="onClear(f)">Clear</button>
+            </div>
+        </div>
+
+    </form>
+    <div id="Graph" #Graph fxFlex></div>
+</div>

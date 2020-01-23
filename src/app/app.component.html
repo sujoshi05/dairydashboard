@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button fxShow fxHide.sm="true" fxHide.md="true" fxHide.lg="true" fxHide.xl="true">
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <h1>DHU</h1>
+    <span class="menu-spacer"></span>
+    <div fxLayout.xs="column" fxShow fxHide.xs="true">
+      <a mat-button routerLinkActive="active" routerLink="/customer">Customer</a>
+      <a mat-button routerLinkActive="active" routerLink="/setting">Setting</a>
+      <a mat-button routerLinkActive="active" routerLink="/collection">Collection</a>
+      <a mat-button routerLinkActive="active" routerLink="/report">Report</a>
+      <a mat-button routerLinkActive="active" routerLink="/analysis">Analysis</a>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a mat-list-item routerLinkActive="activemobile" routerLink="/customer" (click)="sidenav.toggle()">Customer</a>
+      <a mat-list-item routerLinkActive="activemobile" routerLink="/setting" (click)="sidenav.toggle()">Setting</a>
+      <a mat-list-item routerLinkActive="activemobile" routerLink="/collection" (click)="sidenav.toggle()">Collection</a>
+      <a mat-list-item routerLinkActive="activemobile" routerLink="/report" (click)="sidenav.toggle()">Report</a>
+      <a mat-list-item routerLinkActive="activemobile" routerLink="/analysis" (click)="sidenav.toggle()">Analysis</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

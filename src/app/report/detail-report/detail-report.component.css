@@ -1,0 +1,16 @@
+
+ th {
+    min-width: 100px;
+  }
+ /* 
+  td{
+    text-align: center
+  } */
+
+  .me {
+      overflow-x: auto;
+  }
+
+  button {
+    height: 35px;
+  }

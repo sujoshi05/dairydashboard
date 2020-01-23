@@ -1,0 +1,58 @@
+<!-- <div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let row"> {{row.date | date :'d MMM yyyy'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef> Quantity </th>
+      <td mat-cell *matCellDef="let row"> {{row.quantity}} </td>
+    </ng-container>
+    <ng-container matColumnDef="quality">
+      <th mat-header-cell *matHeaderCellDef> Quality </th>
+      <td mat-cell *matCellDef="let row"> {{row.quality}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="animal">
+      <th mat-header-cell *matHeaderCellDef> Animal </th>
+      <td mat-cell *matCellDef="let row"> {{row.animal}} </td>
+    </ng-container>
+    <ng-container matColumnDef="rate">
+      <th mat-header-cell *matHeaderCellDef> Rate </th>
+      <td mat-cell *matCellDef="let row"> {{row.rate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> Amount </th>
+      <td mat-cell *matCellDef="let row"> {{row.quantity * row.rate}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+  <mat-paginator [length]="paginationOptions.length" [pageSize]="paginationOptions.pageSize" [pageSizeOptions]="paginationOptions.pageSizeOptions"
+    (page)="onPaginateChange($event)"> </mat-paginator>
+</div> -->
+
+<div fxLayout="row">
+  <h4 fxFlex>{{title}}</h4>
+  <button mat-flat-button type="button" color="primary" (click)="back()">Back</button>
+</div>
+
+<div class="me">
+  <table class="mat-table">
+    <tr class="mat-header-row">
+      <th class="mat-header-cell" *ngFor="let value of displayedColumns">{{value}}</th>
+    </tr>
+    <tr *ngFor="let data of dataSource" class="mat-row">
+      <td class="mat-cell">{{data.date | date :'d MMM yyyy'}}</td>
+      <td class="mat-cell">{{data.animal}}</td>
+      <td class="mat-cell">{{data.quantity}}</td>
+      <td class="mat-cell">{{data.quality}}</td>
+      <td class="mat-cell">{{data.rate}}</td>
+      <td class="mat-cell"> {{data.quantity * data.rate}}</td>
+    </tr>
+  </table>
+</div>
+<mat-paginator [length]="paginationOptions.length" [pageSize]="paginationOptions.pageSize" [pageSizeOptions]="paginationOptions.pageSizeOptions"
+  (page)="onPaginateChange($event)"> </mat-paginator>

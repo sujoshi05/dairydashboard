@@ -1,0 +1,72 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" [formGroup]="collectionForm">
+  <div fxLayout="column">
+    <mat-form-field fxFlex="30">
+      <input type="text" placeholder="Customer Name" aria-label="Names" matInput [formControl]="customerName" [matAutocomplete]="customerNames">
+      <mat-autocomplete #customerNames="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions  | async" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="customerName.invalid && customerName.errors.required">
+        Customer Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+      <input matInput [matDatepicker]="collectionDate" placeholder="Enter Date" formControlName="date" [min]="date" [max]="date">
+      <mat-datepicker-toggle matSuffix [for]="collectionDate"></mat-datepicker-toggle>
+      <mat-datepicker #collectionDate></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+      <input matInput type="number" placeholder="Quantity in Litre" formControlName="quantity">
+      <mat-error *ngIf="quantity.invalid && quantity.errors.required">
+        Quantity is required
+      </mat-error>
+      <mat-error *ngIf="quantity.invalid && quantity.errors.min">
+        Please enter value more than 1
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+      <input matInput type="number" placeholder="Quality" formControlName="quality">
+      <mat-error *ngIf="quality.invalid && quality.errors.required">
+        Quality is required
+      </mat-error>
+      <mat-error *ngIf="quality.invalid && quality.errors.min">
+        Please enter value more than 1
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+      <mat-label>Select an Animal</mat-label>
+      <mat-select formControlName="animal" (selectionChange)="onAnimalChange($event)">
+        <mat-option *ngFor="let a of animals" [value]="a.animal">
+          {{a.animal}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="animal.invalid && animal.errors.required">
+        Please select an Animal
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+      <input matInput type="number" placeholder="Rate per Litre" formControlName="rate">
+      <mat-error *ngIf="rate.invalid && rate.errors.required">
+        Rate is required
+      </mat-error>
+      <mat-error *ngIf="rate.invalid && rate.errors.min">
+        Please enter value more than 1
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+      <textarea matInput placeholder="Leave a comment" formControlName="comment"></textarea>
+    </mat-form-field>
+
+    <div fxFlex fxFlexAlign="end">
+      <button mat-flat-button type="submit" class = "marignRight" color="primary" [disabled]="collectionForm.invalid">Submit</button>
+      <button mat-flat-button type="button" color="warn" (click)="onClear(f)">Clear</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,34 @@
+<div fxLayout="column">
+ 
+  <div fxFlex fxLayoutAlign="end none">
+    <button mat-flat-button type="button" color="primary" (click)="editRate({})">Add</button>
+  </div>
+
+  <div class="mat-elevation-z8" *ngIf="showData; else elseBlock" fxFlex>
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- Name Column -->
+      <ng-container matColumnDef="animal">
+        <th mat-header-cell *matHeaderCellDef> Animal </th>
+        <td mat-cell *matCellDef="let row"> {{row.animal}} </td>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="rate">
+        <th mat-header-cell *matHeaderCellDef> Rate </th>
+        <td mat-cell *matCellDef="let row"> {{row.rate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> Edit </th>
+        <td mat-cell *matCellDef="let row" (click)="editRate(row)"> here </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+    <mat-paginator [length]="paginationOptions.length" [pageSize]="paginationOptions.pageSize" [pageSizeOptions]="paginationOptions.pageSizeOptions"
+      (page)="onPaginateChange($event)"> </mat-paginator>
+  </div>
+  <ng-template #elseBlock>Please add rates for an animals</ng-template>
+</div>

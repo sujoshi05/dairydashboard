@@ -1,0 +1,62 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" [formGroup]="salaryForm">
+    <div fxLayout="column" >
+    <mat-form-field fxFlex>
+      <mat-label>Select Month</mat-label>
+      <mat-select formControlName="month" [(ngModel)]="selectedMonth">
+        <mat-option *ngFor="let m of months" [value]="m.value">
+          {{m.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+      <mat-label>Select Year</mat-label>
+      <mat-select formControlName="year" [(ngModel)]="selectedYear">
+        <mat-option *ngFor="let y of years" [value]="y">
+          {{y}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div fxFlex fxFlexAlign="end">
+      <button mat-flat-button type="submit" class = "marignRight" color="primary" [disabled]="salaryForm.invalid">Go</button>
+      <button mat-flat-button type="button" color="warn" (click)="onClear(f)">Clear</button>
+    </div>
+  </div>
+</form>
+
+
+
+<div class="mat-elevation-z8" *ngIf="showReport; else elseBlock">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let row"> {{row._id.name}} </td>
+    </ng-container>
+
+    <!-- Color Column -->
+    <!-- <ng-container matColumnDef="adhaarNo">
+      <th mat-header-cell *matHeaderCellDef> Adhaar No </th>
+      <td mat-cell *matCellDef="let row"> {{row._id.adhaarNo}} </td>
+    </ng-container> -->
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> Amount </th>
+      <td mat-cell *matCellDef="let row"> {{row.amount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="more">
+      <th mat-header-cell *matHeaderCellDef> More </th>
+      <td mat-cell *matCellDef="let row" (click)="moreDetails(row._id)"> here </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+  <mat-paginator [length]="paginationOptions.length" [pageSize]="paginationOptions.pageSize" [pageSizeOptions]="paginationOptions.pageSizeOptions"
+    (page)="onPaginateChange($event)"> </mat-paginator>
+</div>
+<ng-template #elseBlock>Please select the filter to check the data</ng-template>

@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 1em;
+}
+
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding : 0.35em 0;
+}
+
+.mat-form-field{
+  line-height :1
+}
+
+mat-sidenav-content {
+  margin-top: 10px
+}
+
+mat-sidenav-content > div {
+  height: 85vh;
+}
+
+.mat-toolbar-multiple-rows {
+  min-height: 50px;
+}
+
+.marignRight {
+  margin-right: 8px !important;
+}
+
+table {
+  width: 100%;
+}
+
+
+.mat-header-cell {
+  font-weight: bold;
+  color: black;
+}
+
+.active {
+  background-color:#5e25d6
+}
+
+.activemobile {
+  background-color:#6283ce9e
+}
